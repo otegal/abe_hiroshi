@@ -6,6 +6,10 @@ import (
 	"github.com/sclevine/agouti"
 )
 
+// テストコードからもパラメタを変更できる様にパッケージ内ではどこからでも呼べる様にする
+var pageURL = "http://abehiroshi.la.coocan.jp/"
+var screenShotFileName = "abe_hiroshi.jpg"
+
 func main() {
 	// driver := agouti.ChromeDriver()
 	driver := agouti.ChromeDriver(
@@ -24,7 +28,7 @@ func main() {
 	}
 
 	// 阿部寛のウェブページに遷移する
-	if err := page.Navigate("http://abehiroshi.la.coocan.jp/"); err != nil {
+	if err := page.Navigate(pageURL); err != nil {
 		log.Fatalf("阿部寛になにかあったかもしれません : %v", err)
 	}
 
@@ -55,7 +59,7 @@ func main() {
 	}
 
 	// スクショとる
-	if err := page.Screenshot("./abe_hiroshi.jpg"); err != nil {
+	if err := page.Screenshot(screenShotFileName); err != nil {
 		log.Fatalf("スクショ取れまへん : %v", err)
 	}
 }
