@@ -13,11 +13,11 @@ var setPageURL = func(s string) string { return s }
 var setFileName = func(s string) string { return s }
 
 func main() {
-	driver := agouti.ChromeDriver()
-	// driver := agouti.ChromeDriver(
-	// 	// headlessの場合
-	// 	agouti.ChromeOptions("args", []string{"--headless", "--disable-gpu", "--no-sandbox"}),
-	// )
+	// driver := agouti.ChromeDriver()
+	driver := agouti.ChromeDriver(
+		// headlessの場合
+		agouti.ChromeOptions("args", []string{"--headless", "--disable-gpu", "--no-sandbox"}),
+	)
 
 	if err := driver.Start(); err != nil {
 		log.Fatalf("driverの起動に失敗しました : %v", err)
