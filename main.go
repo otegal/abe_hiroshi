@@ -6,12 +6,18 @@ import (
 	"github.com/sclevine/agouti"
 )
 
+var pageURL = "http://abehiroshi.la.coocan.jp/"
+var screenShotFileName = "abe_hiroshi.jpg"
+
+var setPageURL = func(s string) string { return s }
+var setFileName = func(s string) string { return s }
+
 func main() {
-	// driver := agouti.ChromeDriver()
-	driver := agouti.ChromeDriver(
-		// headlessの場合
-		agouti.ChromeOptions("args", []string{"--headless", "--disable-gpu", "--no-sandbox"}),
-	)
+	driver := agouti.ChromeDriver()
+	// driver := agouti.ChromeDriver(
+	// 	// headlessの場合
+	// 	agouti.ChromeOptions("args", []string{"--headless", "--disable-gpu", "--no-sandbox"}),
+	// )
 
 	if err := driver.Start(); err != nil {
 		log.Fatalf("driverの起動に失敗しました : %v", err)
@@ -24,7 +30,7 @@ func main() {
 	}
 
 	// 阿部寛のウェブページに遷移する
-	if err := page.Navigate("http://abehiroshi.la.coocan.jp/"); err != nil {
+	if err := page.Navigate(setPageURL(pageURL)); err != nil {
 		log.Fatalf("阿部寛になにかあったかもしれません : %v", err)
 	}
 
@@ -55,7 +61,7 @@ func main() {
 	}
 
 	// スクショとる
-	if err := page.Screenshot("./abe_hiroshi.jpg"); err != nil {
+	if err := page.Screenshot(setFileName(screenShotFileName)); err != nil {
 		log.Fatalf("スクショ取れまへん : %v", err)
 	}
 }
